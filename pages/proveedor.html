@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bender Bar</title>
+    <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="../libs/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../libs/fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../libs/fontawesome/css/solid.css" rel="stylesheet">
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">Bender Bar</a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Administración</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Compras</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Table-->
+    <div class="container">
+        <div class="row">
+            <h1 class="text-start mb-3 mt-3">Proveedores</h1>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar"><i
+                        class="fa-solid fa-plus m-1"></i>Agregar</button>
+            </div>
+
+            <table class="table m-3">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col" colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Coca-Cola</td>
+                        <td>Bogota</td>
+                        <td>6010000000</td>
+                        <td><a class="text-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                        <td><a class="text-danger"><i class="fa-regular fa-trash"></i></a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Proveedor 2</td>
+                        <td>Bogota</td>
+                        <td>6010000000</td>
+                        <td><a class="text-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                        <td><a class="text-danger"><i class="fa-regular fa-trash"></i></a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td> Proveedor 3</td>
+                        <td>Bogota</td>
+                        <td>6010000000</td>
+                        <td><a class="text-warning"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                        <td><a class="text-danger"><i class="fa-regular fa-trash"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Proveedor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1">
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Direccion</label>
+                            <input class="form-control" id="exampleFormControlTextarea1" rows="3">
+                          </div>
+                          <div class="mb-3">
+                              <label for="telefono" class="fomr-label">Telefono</label>
+                              <input class="form-control" id="telefono">
+                          </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../libs/bootstrap/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    </script>
+</body>
+
+</html>
