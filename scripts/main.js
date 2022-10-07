@@ -1,31 +1,33 @@
 function cargar(name){
-    $("#contenido").load("pages/"+ name +".html");
+    $("#contenido").load("pages/"+ name +".html");  
+}
+
+async function load(url){
+    let consumos = loadJs(url + "/consumos.js");
+
+    await consumos;
 }
 
 
-$.getScript( "scripts/consumos.js" )
-  .done(function( script, textStatus ) {
-    console.log( textStatus );
-  })
-  .fail(function( jqxhr, settings, exception ) {
-    alert( "Triggered ajaxError handler." );
-});
-
-var xmlhttp = new XMLHttpRequest();
-var url = "config/jsonconfig.json";
-
-xmlhttp.onreadystatechange = function () {
-  if (this.readyState == 4 && this.status == 200) {
-    var myArr = JSON.parse(this.responseText);
-    urls(myArr);
-  }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-function urls(arr) {
-  urlBase = arr.Config[0].url;
-  console.log(urlBase);
+function loadJs(url){
+    let script = document.createElement('script');
+    script.onload = function(){
+        console.log("Success loading", url);
+    };
+    script.onerror = function(){
+        console.log("Error loading", url);
+    };
+    script.src = url;
+    document.head.appendChild(script);
 }
 
-
+async function listaUsuarios(){
+    response = await userGetAll();
+    console.log(response);
+    for (const key in response) {
+        var newRowContent = "<tr><td scope=\"row\">"+ response[key].identification + "</td><td>" + response[key].name + "</td><td>" + response[key].rolId + "</td><td class=\"text-center\"><a class=\"text-warning\" data-bs-toggle=\"modal\" data-bs-target=\"#modalEditar\"><i class=\"fa-regular fa-pen-to-square\"></i></a></td><td class=\"text-center\"><a class=\"text-danger\"><i class=\"fa-regular fa-trash\"></i></a></td></tr>";
+        console.log(response[key]);
+        $("#userTableBody").append(newRowContent);
+    }
+    
+}

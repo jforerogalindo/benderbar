@@ -15,7 +15,7 @@
                     <th scope="col" class="text-center" colspan="2">Opciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="userTableBody">
                 <tr>
                     <td scope="row">1020841878</td>
                     <td>Laura Zorro</td>
@@ -29,5 +29,81 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Documento</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nombre</label>
+                        <input class="form-control" id="exampleFormControlTextarea1" rows="3">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="fomr-label">Contraseña</label>
+                        <input class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="rol" class="fomr-label">Rol</label>
+                        <select id="rol" class="form-select" aria-label="Default select example">
+                            <option selected>Selecciona un rol</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal editar-->
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="mb-3">
+                        <label for="telefono" class="fomr-label">Nombre</label>
+                        <input class="form-control" id="telefono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="rol" class="fomr-label">Rol</label>
+                        <select id="rol" class="form-select" aria-label="Default select example">
+                            <option selected>Selecciona un rol</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
     </div>
 </div>
