@@ -3819,6 +3819,7 @@ textarea.form-control-lg {
 }
 .navbar-nav .show > .nav-link,
 .navbar-nav .nav-link.active {
+  font-weight: 600;
   color: var(--bs-navbar-active-color);
 }
 .navbar-nav .dropdown-menu {
