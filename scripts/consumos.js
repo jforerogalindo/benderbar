@@ -1,5 +1,3 @@
-"use strict";
-
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "config/jsonconfig.json", false);
 xhr.send();
@@ -11,16 +9,16 @@ if (xhr.readyState === 4 && xhr.status == 200) {
 }
 
 function urls(arr) {
-  var urlBase = arr.Config[0].url;
+  urlBase = arr.Config[0].url;
   console.log(urlBase);
 }
 
 function rolsGetAll() {
-    return consumoAjax("GET", "consumos/listroles.json", "", "");
+    return consumoAjax("GET", urlBase + "Roles/GetAll", "", "");
 }
 
 function userGetAll() {
-  return consumoAjax("GET", "consumos/listuser.json", "", "");
+  return consumoAjax("GET", urlBase + "User/GetAll", "", "");
 }
 
 function consumoAjax(method, url, body, contentType) {
