@@ -174,8 +174,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@stackblitz/sdk@1/bundles/sdk.umd.js"></script>
     <script src="scripts/main.js"></script>
     <script>
-        cargar("header");
-        load("scripts");
+        
+        load("scripts").then(function(){
+           cargar("header"); 
+        });
         //response = consumoAjax("GET","consumos/listuser.json","","");
     </script>
 </body>
