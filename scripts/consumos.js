@@ -15,6 +15,10 @@ function urls(arr) {
   console.log(urlBase);
 }
 
+function rolsGetAll() {
+    return consumoAjax("GET", "consumos/listroles.json", "", "");
+}
+
 function userGetAll() {
   return consumoAjax("GET", "consumos/listuser.json", "", "");
 }
