@@ -9,6 +9,19 @@ const swalResponse = Swal.mixin({
     timerProgressBar: true,
 });
 
+function limpiarModalAgregar(){
+    $("#identificacion").val("");
+    $("#nombre").val("");
+    $("#password").val("");
+    $("#rol").val("");
+}
+
+function limpiarModalEditar(){
+    $("#nombreEdit").val("");
+    $("#passwordEdit").val("");
+    $("#rolEdit").val("");
+}
+
 async function getRol(rolId) {
     var roles = await rolsGetAll();
     for (const key in roles) {
@@ -22,7 +35,6 @@ async function getRol(rolId) {
 async function listaUsuarios() {
     var response = await userGetAll();
     for (const key in response) {
-        console.log(response[key]);
         var newRowContent =
             '<tr><td scope="row">' +
             response[key].identification +
@@ -30,7 +42,8 @@ async function listaUsuarios() {
             response[key].name +
             "</td><td>" +
             (await getRol(response[key].rolId)) +
-            '</td><td class="text-center"><a class="text-warning" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="fa-regular fa-pen-to-square"></i></a></td><td class="text-center"><a class="text-danger" onclick="eliminarUsuario('+response[key].identification +
+            '</td><td class="text-center"><a class="text-warning" onclick="cargaEditarUsuario('+response[key].identification +
+            ')" data-bs-toggle="modal" data-bs-target="#modalEditar"><i class="fa-regular fa-pen-to-square"></i></a></td><td class="text-center"><a class="text-danger" onclick="eliminarUsuario('+response[key].identification +
             ')"><i class="fa-regular fa-trash"></i></a></td></tr>';
         $("#userTableBody").append(newRowContent);
     }
@@ -89,6 +102,48 @@ async function eliminarUser(userId){
 	} else {
 		swalResponse.fire({
 			text: "Error al eliminar el usuario, por favor reintenta más tarde",
+			icon: "error",
+		});
+	}
+}
+
+function cargaEditarUsuario(identification){
+    $("#editar").click(function(){
+        editarUser(identification);
+        $("#spinnerEditar").show();
+        limpiarModalEditar();
+    });
+}
+
+async function editarUser(identification){
+    var nombre = $("#nombreEdit").val();
+    var password = $("#passwordEdit").val();
+    var rolId = $("#rolEdit").val();
+    try {
+        var response = await editUser(identification, nombre, password, rolId);
+    } catch (e) {
+        $("#spinnerEditar").hide();
+        $("#cancelarEditar").click();
+        swalResponse.fire({
+            text: "Error al editar el usuario, por favor reintenta más tarde",
+            icon: "error",
+        });
+        return;
+    }
+	if (response.success) {
+        $("#spinnerEditar").hide();
+        $("#cancelarEditar").click();
+		swalResponse.fire({
+			text: "Usuario editado!",
+			icon: "success",
+		});
+		$("#userTableBody tr").remove();
+		listaUsuarios();
+	} else {
+        $("#spinnerEditar").hide();
+        $("#cancelarEditar").click();
+		swalResponse.fire({
+			text: "Error al editar el usuario, por favor reintenta más tarde",
 			icon: "error",
 		});
 	}

@@ -38,7 +38,7 @@ function deleteUser(userId) {
     return consumoAjax("DELETE", urlBase + "User/Delete/" + userId, "", "");
 }
 //---------------------------------------------------------------------------------------
-function editUser(identification) {
+function editUser(identification, userName, password, rolId) {
     url = urlBase + "User/Edit/" + identification;
     body = {
         "name": userName,

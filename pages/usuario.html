@@ -45,7 +45,7 @@
                     <div class="mb-3">
                         <label for="rol" class="fomr-label">Rol</label>
                         <select id="rol" class="form-select" aria-label="Default select example">
-                            <option selected>Selecciona un rol</option>
+                            <option value="" selected>Selecciona un rol</option>
                         </select>
                     </div>
                 </div>
@@ -81,14 +81,17 @@
                     <div class="mb-3">
                         <label for="rolEdit" class="fomr-label">Rol</label>
                         <select id="rolEdit" class="form-select" aria-label="Default select example">
-                            <option selected>Selecciona un rol</option>
+                            <option value="" selected>Selecciona un rol</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Actualizar</button>
+                <button id="editar" type="button" class="btn btn-primary">
+                    <span id="spinnerEditar" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                    Actualizar
+                </button>
             </div>
         </div>
     </div>
@@ -103,5 +106,12 @@
         rol = $("#rol").val();
         $("#spinnerAgregar").show();
         agregarUsuario(identification,nombre,password,rol);
+        limpiarModalAgregar();
     });
+    $("#cancelarAgregar").click(function(){
+        limpiarModalAgregar();
+    })
+    $("#cancelarEditar #editar").click(function(){
+        limpiarModalEditar();
+    })
 </script>
