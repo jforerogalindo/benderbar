@@ -10,7 +10,7 @@ const swalResponse = Swal.mixin({
 });
 
 async function getRol(rolId) {
-    roles = await rolsGetAll();
+    var roles = await rolsGetAll();
     for (const key in roles) {
         if (rolId === roles[key].rolId) {
             //console.log(roles[key].rolName)
@@ -20,7 +20,7 @@ async function getRol(rolId) {
 }
 
 async function listaUsuarios() {
-    response = await userGetAll();
+    var response = await userGetAll();
     for (const key in response) {
         console.log(response[key]);
         var newRowContent =
@@ -37,7 +37,7 @@ async function listaUsuarios() {
 }
 
 async function listaRoles() {
-    response = await rolsGetAll();
+    var response = await rolsGetAll();
     for (const key in response) {
         var newOptionRol =
             '<option value="' +
@@ -46,6 +46,7 @@ async function listaRoles() {
             response[key].rolName +
             "</option>";
         $("#rol").append(newOptionRol);
+        $("#rolEdit").append(newOptionRol);
     }
 }
 
@@ -70,7 +71,7 @@ function eliminarUsuario(userId) {
 
 async function eliminarUser(userId){
     try {
-        response = await deleteUser(userId);
+        var response = await deleteUser(userId);
     } catch (e) {
         swalResponse.fire({
             text: "Error al eliminar el usuario, por favor reintenta más tarde",
@@ -78,23 +79,25 @@ async function eliminarUser(userId){
         });
         return;
     }
-    if (response.success) {
-        swalResponse.fire({
-            text: "Eliminado!",
-            icon: "success",
-        });
-    } else {
-        swalResponse.fire({
-            text: "Error al eliminar el usuario, por favor reintenta más tarde",
-            icon: "error",
-        });
-    }
+	if (response.success) {
+		swalResponse.fire({
+			text: "Eliminado!",
+			icon: "success",
+		});
+		$("#userTableBody tr").remove();
+		listaUsuarios();
+	} else {
+		swalResponse.fire({
+			text: "Error al eliminar el usuario, por favor reintenta más tarde",
+			icon: "error",
+		});
+	}
 }
 
 async function agregarUsuario(identification,nombre,password,rol){
     idbranch = 1101;
     try {
-        response = await insertUser(identification, nombre, password, rol, idbranch);
+        var response = await insertUser(identification, nombre, password, rol, idbranch);
     } catch (e) {
         $("#spinnerAgregar").hide();
         $("#cancelarAgregar").click();

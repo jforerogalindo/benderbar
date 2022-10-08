@@ -1,7 +1,7 @@
 {
   "Config": [
     {
-      "url": "https://localhost:7280/"
+      "url": "http://localhost/"
     }
   ]
 }
