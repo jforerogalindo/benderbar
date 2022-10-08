@@ -22,6 +22,18 @@ function ajaxlogin(userName, password) {
     return consumoAjax("POST", url, JSON.stringify(body), "aplication/json");
 }
 //---------------------------------------------------------------------------------------
+function insertUser(identification, name, password, rolId, idbranch) {
+    url = urlBase + "User/Insert";
+    body = {
+        "identification": identification,
+        "name": name,
+        "password": password,
+        "rolId": rolId,
+        "idbranch": idbranch
+    }
+    return consumoAjax("POST", url, JSON.stringify(body), "aplication/json");
+}
+//---------------------------------------------------------------------------------------
 function deleteUser(userId) {
     return consumoAjax("DELETE", urlBase + "User/Delete/" + userId, "", "");
 }

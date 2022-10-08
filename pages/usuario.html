@@ -31,16 +31,16 @@
             <div class="modal-body">
                 <div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Documento</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <label for="identificacion" class="form-label">Documento</label>
+                        <input type="number" class="form-control" id="identificacion">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Nombre</label>
-                        <input class="form-control" id="exampleFormControlTextarea1" rows="3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" rows="3">
                     </div>
                     <div class="mb-3">
-                        <label for="telefono" class="fomr-label">Contraseña</label>
-                        <input class="form-control" id="telefono">
+                        <label for="password" class="fomr-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password">
                     </div>
                     <div class="mb-3">
                         <label for="rol" class="fomr-label">Rol</label>
@@ -51,8 +51,11 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button id="cancelarAgregar" type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar</button>
+                <button id="agregar" type="button" class="btn btn-primary">
+                    <span id="spinnerAgregar" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                    Guardar
+                </button>
             </div>
         </div>
     </div>
@@ -93,4 +96,12 @@
 <script>
     listaUsuarios();
     listaRoles();
+    $("#agregar").click(function(){
+        identification = $("#identificacion").val();
+        nombre = $("#nombre").val();
+        password = $("#password").val();
+        rol = $("#rol").val();
+        $("#spinnerAgregar").show();
+        agregarUsuario(identification,nombre,password,rol);
+    });
 </script>
